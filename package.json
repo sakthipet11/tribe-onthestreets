@@ -49,7 +49,7 @@
     "jsonwebtoken": "latest",
     "kerberos": "latest",
     "lucide-react": "^0.454.0",
-    "mongodb": "^7.0.0",
+    "mongodb": "latest",
     "mongodb-client-encryption": "latest",
     "next": "^16.0.0",
     "next-themes": "latest",
