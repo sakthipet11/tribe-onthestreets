@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import SignupForm from "./signup-form"
+import { X } from 'lucide-react'
 import { trackEvent, EVENTS } from "@/lib/analytics"
 
 export default function Hero() {
@@ -76,9 +77,10 @@ export default function Hero() {
             <div className="relative">
               <button
                 onClick={() => setShowForm(false)}
-                className="absolute -top-10 right-0 text-slate-400 hover:text-white text-2xl"
+                className="absolute -top-12 right-0 bg-slate-700/80 hover:bg-slate-600 text-white p-2 rounded-full transition-all duration-200 hover:scale-110 z-10"
+                aria-label="Close form"
               >
-                ✕
+                <X className="w-6 h-6" />
               </button>
               <SignupForm onSuccess={() => setShowForm(false)} />
             </div>

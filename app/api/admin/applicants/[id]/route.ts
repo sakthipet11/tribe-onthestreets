@@ -14,8 +14,8 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
     const { status, crew_notes } = await request.json()
 
     const collection = await getApplicantsCollection()
-    const result = await collection.findByIdAndUpdate(
-      new ObjectId(params.id),
+    const result = await collection.findOneAndUpdate(
+      { _id: new ObjectId(params.id) },
       {
         $set: {
           status,
@@ -25,8 +25,13 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
       { returnDocument: 'after' }
     )
 
-    return NextResponse.json(result)
+    if (!result) {
+      return NextResponse.json({ error: 'Applicant not found' }, { status: 404 })
+    }
+
+    return NextResponse.json(result.value)
   } catch (error) {
+    console.error('[v0] Update status error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
